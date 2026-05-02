@@ -1,9 +1,17 @@
-function App() {
-  return (
-    <div className="flex h-screen w-full items-center justify-center bg-slate-50">
-      <h1 className="text-3xl font-bold text-blue-600">Birdle Map Loading...</h1>
-    </div>
-  )
-}
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { HomePage } from '@/pages/HomePage';
 
-export default App
+const queryClient = new QueryClient();
+
+export default function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </BrowserRouter>
+    </QueryClientProvider>
+  );
+}
